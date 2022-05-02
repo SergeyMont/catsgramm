@@ -25,6 +25,14 @@ public class PostController {
         return postService.findAll();
     }
 
+    @GetMapping("/posts/{postId}")
+        public Post findPostById(@PathVariable("postId") int postId){
+        return postService.findAll().stream()
+                .filter(x->x.getId()==postId)
+                .findFirst()
+                .orElse(null);
+        }
+
     @PostMapping(value = "/post")
     public Post create(@RequestBody Post post) {
         return postService.create(post);

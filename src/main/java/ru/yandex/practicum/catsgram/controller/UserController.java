@@ -26,6 +26,11 @@ public class UserController {
         return userService.findAll();
     }
 
+    @GetMapping("/users/{userEmail}")
+    public User findUserById(@PathVariable("userEmail") String userEmail){
+        return userService.findUserByEmail(userEmail);
+    }
+
     @PostMapping
     public User create(@RequestBody User user) {
         if(user.getEmail() == null || user.getEmail().isBlank()) {
